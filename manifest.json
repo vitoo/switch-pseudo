@@ -1,0 +1,23 @@
+{
+    "manifest_version": 3,
+    "name": "JVC Switch Pseudo",
+    "version": "1.0",
+    "permissions": [
+      "cookies",
+      "storage",
+      "activeTab",
+      "scripting",
+      "webNavigation"
+    ],
+    "host_permissions": [
+      "https://www.jeuxvideo.com/"
+    ],
+    "background": {
+      "service_worker": "background.js",
+      "js": ["content.js"]
+    },
+    "action": {
+      "default_popup": "popup.html"
+    } 
+  }
+  
