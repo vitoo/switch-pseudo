@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Popup loaded');
     chrome.storage.local.get({ loginCookies: {} }, (result) => {
       const storedData = result.loginCookies;
       const userList = document.getElementById('user-list');
       userList.innerHTML = '';
   
       Object.keys(storedData).forEach(username => {
-        console.log(`Displaying cookie for username: ${username}`);
         const userDiv = document.createElement('div');
         userDiv.classList.add('user-item');
   
@@ -42,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   function setCookie(name, value) {
-    console.log(`Setting cookie: ${name} with value: ${value}`);
     const expirationDate = new Date();
     expirationDate.setFullYear(expirationDate.getFullYear() + 2);
   
@@ -61,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function refreshCurrentTab() {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs[0] && tabs[0].url.startsWith('https://www.jeuxvideo.com/')) {
-        console.log('Refreshing tab:', tabs[0].url);
         chrome.tabs.reload(tabs[0].id);
       }
     });
