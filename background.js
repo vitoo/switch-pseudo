@@ -1,10 +1,10 @@
-
-function saveLoginCookie(username) {
+ function saveLoginCookie(username) {
     chrome.cookies.get({ url: 'https://www.jeuxvideo.com', name: 'coniunctio' }, (cookie) => {
         if (cookie) {
             chrome.storage.local.get({ loginCookies: {} }, (result) => {
                 const storedData = result.loginCookies;
                 storedData[username] = cookie.value;
+                //if username dont already exist in storedData
                 chrome.storage.local.set({ loginCookies: storedData });
             });
         }
@@ -20,7 +20,7 @@ function deleteLoginCookie(callback) {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === 'saveLoginCookie') {
         saveLoginCookie(message.username);
-    } else if (message.action === 'deleteCookie') {
+    } else if (message.action === 'deleteLoginCookie') {
         deleteLoginCookie(() => {
             sendResponse({ status: 'Cookie deleted' });
         });
