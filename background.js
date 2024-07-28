@@ -1,4 +1,4 @@
- function saveLoginCookie(username) {
+function saveLoginCookie(username) {
     chrome.cookies.get({ url: 'https://www.jeuxvideo.com', name: 'coniunctio' }, (cookie) => {
         if (cookie) {
             chrome.storage.local.get({ loginCookies: {} }, (result) => {
