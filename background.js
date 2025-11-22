@@ -38,7 +38,7 @@ function injectContentScript(tabId) {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         if (tabs[0]) {
             chrome.scripting.executeScript({
-                target: { tabId: tabs[0].id },
+                target: { tabId: tabId },
                 files: ['content.js']
             }, () => {
                 // console.log('Content script injected');
