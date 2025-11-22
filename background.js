@@ -35,14 +35,8 @@ chrome.webNavigation.onCompleted.addListener((details) => {
 }, { url: [{ hostContains: 'jeuxvideo.com' }] });
 
 function injectContentScript(tabId) {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs[0]) {
-            chrome.scripting.executeScript({
-                target: { tabId: tabId },
-                files: ['content.js']
-            }, () => {
-                // console.log('Content script injected');
-            });
-        }
+    chrome.scripting.executeScript({
+        target: { tabId: tabId },
+        files: ['content.js']
     });
 }
